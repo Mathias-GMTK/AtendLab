@@ -34,4 +34,8 @@ $conn = conectar();
     </div>
 </body>
 </html>
-<?php $conn->close(); ?>
+<?php 
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+
+    require_once__DIR__'./../routes.php';
