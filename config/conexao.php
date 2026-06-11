@@ -4,7 +4,7 @@
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '');          // padrão XAMPP: senha vazia
+define('DB_PASS', 'univille');    
 define('DB_NAME', 'atendelab');
 define('DB_CHARSET', 'utf8mb4');
 
