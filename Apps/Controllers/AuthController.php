@@ -65,5 +65,70 @@ class AuthController
         $stmt->bindValue('email', $email);
 
         $stmt->execute();
+
+        $usuario = $stmt->fetch(PDO :: FETCH_ASSOC);
+
+        if(
+            !$usuario
+            || $usuario['status'] !== 'ativo' || !password_verify($senha, $usuario ['senha']);
+        ){
+            $_SESSION['erro_login'] = 'Email ou senha invalidos';
+
+            header('Location: ??controller=auth&action=login');
+            exit;
+        }
+
+
+        session_regenerate_id(true);
+
+
+        $_SESSION['usuario'] = 
+        [
+            'id' => $usuario['id'],
+            'nome' => $usuario['nome'],
+            'email' => $usuario['email'],
+            'perfil' => $usuario['perfil'];
+        ];
+
+        header('Location: ?controller=auth&action=login');
+        exit;
+    }
+
+
+    public function dashboard(): void
+    {
+        exigirAutenticacao();
+
+        $usuario = usuarioAtual();
+
+        require_once __DIR__ . '/../Views/Dashboard/index.php';
+    }
+
+    public function logout(): void 
+    {
+        $_SESSION = [];
+
+        if(ini_get('session.use_cookies')){
+            $params = session_get_cookie_params();
+
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params ['path'],
+                $params ['domain'],
+                $params ['secure'],
+                $params ['httponly'],
+            );
+        }
+
+        session_destroy();
+
+        session_start();
+
+        $_SESSION['Mensagem '] = 'Sessão encerrada com sucesso:';
+
+        header('Location: ?controller=auth&action=login');
+        exit;
     }
 }
