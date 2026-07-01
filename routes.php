@@ -1,13 +1,13 @@
 <?php
 
-require_once __DIR__ . '/Apps/Controllers/AuthController.php';
-require_once __DIR__ . '/Apps/Controllers/FrontendController.php';
-require_once __DIR__ . '/Apps/Controllers/DashboardController.php';
-require_once __DIR__ . '/Apps/Controllers/UsuarioController.php';
-require_once __DIR__ . '/Apps/Controllers/PessoasController.php';
-require_once __DIR__ . '/Apps/Controllers/TiposAtendimentosController.php';
-require_once __DIR__ . '/Apps/Controllers/AtendimentosController.php';
-require_once __DIR__ . '/Apps/Middleware/Auth.php';
+require_once __DIR__ . '/apps/controllers/AuthController.php';
+require_once __DIR__ . '/apps/controllers/FrontendController.php';
+require_once __DIR__ . '/apps/controllers/DashboardController.php';
+require_once __DIR__ . '/apps/controllers/UsuarioController.php';
+require_once __DIR__ . '/apps/controllers/PessoasController.php';
+require_once __DIR__ . '/apps/controllers/TiposAtendimentosController.php';
+require_once __DIR__ . '/apps/controllers/AtendimentosController.php';
+require_once __DIR__ . '/apps/middleware/auth.php';
 
 $controller = $_GET['controller'] ?? 'auth';
 $action     = $_GET['action']     ?? 'login';

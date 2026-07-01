@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../../config/database.php';
-require_once __DIR__ . '/../Middleware/Auth.php';
+require_once __DIR__ . '/../middleware/auth.php';
 
 class AuthController
 {
@@ -25,7 +25,7 @@ class AuthController
 
         unset($_SESSION['erro_login'], $_SESSION['mensagem']);
 
-        require __DIR__ . '/../Views/Auth/Login.php';
+        require __DIR__ . '/../views/auth/login.php';
     }
 
     public function entrar(): void
@@ -90,7 +90,7 @@ class AuthController
 
         $usuario = usuarioAtual();
 
-        require __DIR__ . '/../Views/Dashboard/index.php'; 
+        require __DIR__ . '/../views/dashboard/index.php'; 
     }
 
     public function logout(): void
