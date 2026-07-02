@@ -77,17 +77,17 @@ class AtendimentosController
         echo json_encode($atendimento, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-    public function criar(): void
-    {
-        header('Content-Type: application/json; charset=utf-8');
+   public function criar(): void
+{
+    header('Content-Type: application/json; charset=utf-8');
 
-        $pessoa_id           = filter_var($_POST['pessoa_id']           ?? 0, FILTER_VALIDATE_INT);
-        $tipo_atendimento_id = filter_var($_POST['tipo_atendimento_id'] ?? 0, FILTER_VALIDATE_INT);
-        $usuario_id          = filter_var($_POST['usuario_id']          ?? 0, FILTER_VALIDATE_INT);
-        $descricao           = trim($_POST['descricao']                 ?? '');
-        $data_atendimento    = trim($_POST['data_atendimento']          ?? '');
-        $horario_atendimento = trim($_POST['horario_atendimento']       ?? '');
-        $status              = $_POST['status']                         ?? 'aberto';
+    $pessoa_id           = filter_var($_POST['pessoa_id']           ?? 0, FILTER_VALIDATE_INT);
+    $tipo_atendimento_id = filter_var($_POST['tipo_atendimento_id'] ?? 0, FILTER_VALIDATE_INT);
+    $usuario_id          = filter_var($_SESSION['usuario']['id']    ?? 0, FILTER_VALIDATE_INT);
+    $descricao           = trim($_POST['descricao']                 ?? '');
+    $data_atendimento    = trim($_POST['data_atendimento']          ?? '');
+    $horario_atendimento = trim($_POST['horario_atendimento']       ?? '');
+    $status              = $_POST['status']                         ?? 'aberto';
 
         if (!$pessoa_id || !$tipo_atendimento_id || !$usuario_id || $descricao === '' || $data_atendimento === '' || $horario_atendimento === '') {
             http_response_code(400);
